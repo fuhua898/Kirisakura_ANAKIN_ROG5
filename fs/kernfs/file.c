@@ -278,6 +278,10 @@ static ssize_t kernfs_fop_read(struct file *file, char __user *user_buf,
  * modify only the the value you're changing, then write entire buffer
  * back.
  */
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wframe-larger-than="
+
 static ssize_t kernfs_fop_write(struct file *file, const char __user *user_buf,
 				size_t count, loff_t *ppos)
 {
@@ -338,6 +342,9 @@ out_free:
 		mutex_unlock(&of->prealloc_mutex);
 	return len;
 }
+
+#pragma GCC diagnostic pop
+
 
 static void kernfs_vma_open(struct vm_area_struct *vma)
 {
