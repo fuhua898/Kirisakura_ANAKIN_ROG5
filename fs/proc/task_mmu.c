@@ -35,6 +35,10 @@
 #define BIT_SUS_KSTAT (1 << 1) // 使用合适的位掩码值
 #endif
 
+#ifndef susfs_is_current_proc_umounted
+static inline bool susfs_is_current_proc_umounted(void) { return false; }
+#endif
+
 #define SEQ_PUT_DEC(str, val) \
 		seq_put_decimal_ull_width(m, str, (val) << (PAGE_SHIFT-10), 8)
 void task_mem(struct seq_file *m, struct mm_struct *mm)
