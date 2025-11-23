@@ -27,6 +27,14 @@
 #include <asm/tlbflush.h>
 #include "internal.h"
 
+#ifndef BIT_SUS_MAPS
+#define BIT_SUS_MAPS (1 << 0)  // 使用合适的位掩码值
+#endif
+
+#ifndef BIT_SUS_KSTAT  
+#define BIT_SUS_KSTAT (1 << 1) // 使用合适的位掩码值
+#endif
+
 #define SEQ_PUT_DEC(str, val) \
 		seq_put_decimal_ull_width(m, str, (val) << (PAGE_SHIFT-10), 8)
 void task_mem(struct seq_file *m, struct mm_struct *mm)
